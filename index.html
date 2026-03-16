@@ -2,15 +2,17 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>Mein Studien Dashboard</title>
+<title>StudyOS</title>
 
 <style>
 
+*{box-sizing:border-box}
+
 body{
-font-family: Arial, sans-serif;
 margin:0;
-background:#f6f7fb;
-color:#333;
+font-family:Inter,Arial;
+background:#f4f6fb;
+color:#222;
 }
 
 .container{
@@ -18,29 +20,34 @@ display:flex;
 height:100vh;
 }
 
+/* SIDEBAR */
+
 .sidebar{
-width:250px;
-background:#ffffff;
-border-right:1px solid #ddd;
-padding:20px;
+width:240px;
+background:white;
+border-right:1px solid #eee;
+padding:25px;
 }
 
 .sidebar h2{
-margin-top:0;
+margin-bottom:30px;
 }
 
 .sidebar a{
 display:block;
 padding:10px;
-margin-bottom:8px;
+margin-bottom:6px;
+border-radius:8px;
+cursor:pointer;
 text-decoration:none;
 color:#444;
-border-radius:6px;
 }
 
 .sidebar a:hover{
-background:#f0f0f0;
+background:#eef1ff;
 }
+
+/* MAIN */
 
 .main{
 flex:1;
@@ -48,44 +55,39 @@ padding:30px;
 overflow-y:auto;
 }
 
+/* BENTO GRID */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-gap:20px;
+}
+
 .card{
 background:white;
+border-radius:16px;
 padding:20px;
-border-radius:10px;
-box-shadow:0 2px 6px rgba(0,0,0,0.05);
-margin-bottom:20px;
+box-shadow:0 8px 20px rgba(0,0,0,0.05);
 }
 
-.timeline{
-display:flex;
-justify-content:space-between;
-margin-top:20px;
-}
+.big{grid-column:span 2}
+.wide{grid-column:span 4}
 
-.semester{
-padding:15px;
-background:#e9ecff;
-border-radius:8px;
-cursor:pointer;
-}
-
-.semester.active{
-background:#c9d0ff;
-font-weight:bold;
-}
+/* PROGRESS */
 
 .progress{
 height:10px;
 background:#eee;
-border-radius:5px;
+border-radius:10px;
 overflow:hidden;
-margin-top:10px;
 }
 
 .progress-bar{
 height:10px;
-background:#a0a8ff;
+background:#6e7cff;
 }
+
+/* TABLE */
 
 table{
 width:100%;
@@ -95,33 +97,49 @@ border-collapse:collapse;
 th,td{
 padding:10px;
 border-bottom:1px solid #eee;
-text-align:left;
+}
+
+input{
+padding:6px;
+border:1px solid #ddd;
+border-radius:6px;
+width:70px;
+}
+
+textarea{
+width:100%;
+border:1px solid #ddd;
+border-radius:8px;
+padding:10px;
+}
+
+/* TIMELINE */
+
+.timeline{
+display:flex;
+justify-content:space-between;
+margin-top:10px;
+}
+
+.sem{
+background:#eef0ff;
+padding:10px 14px;
+border-radius:10px;
+font-weight:600;
 }
 
 button{
-padding:8px 12px;
+padding:8px 14px;
+background:#6e7cff;
 border:none;
-border-radius:6px;
-background:#a0a8ff;
+border-radius:8px;
 color:white;
 cursor:pointer;
 }
 
-input,textarea{
-width:100%;
-padding:8px;
-margin-top:5px;
-margin-bottom:10px;
-border-radius:6px;
-border:1px solid #ddd;
-}
-
-.todo{
-margin-bottom:6px;
-}
+.page{display:none}
 
 </style>
-
 </head>
 
 <body>
@@ -130,16 +148,15 @@ margin-bottom:6px;
 
 <div class="sidebar">
 
-<h2>Studium</h2>
+<h2>StudyOS</h2>
 
 <a onclick="showPage('dashboard')">Dashboard</a>
-<a onclick="showPage('timeline')">Studium Timeline</a>
-<a onclick="showPage('modules')">Module</a>
-<a onclick="showPage('projects')">Projekte</a>
+<a onclick="showPage('study')">Studium</a>
+<a onclick="showPage('grades')">Noten</a>
 <a onclick="showPage('exams')">Klausuren</a>
-<a onclick="showPage('ai')">KI Lernplattform</a>
+<a onclick="showPage('projects')">Projekte</a>
+<a onclick="showPage('learning')">KI Lernen</a>
 <a onclick="showPage('notes')">Notizen</a>
-<a onclick="showPage('thesis')">Thesis Planer</a>
 
 </div>
 
@@ -147,13 +164,15 @@ margin-bottom:6px;
 
 <!-- DASHBOARD -->
 
-<div id="dashboard" class="page">
+<div id="dashboard" class="page" style="display:block">
 
-<div class="card">
+<div class="grid">
 
-<h2>Studienfortschritt</h2>
+<div class="card big">
 
-<p>Semester 4 von 6</p>
+<h3>Studienfortschritt</h3>
+
+<p>Semester 4 / 6</p>
 
 <div class="progress">
 <div class="progress-bar" style="width:66%"></div>
@@ -163,35 +182,33 @@ margin-bottom:6px;
 
 <div class="card">
 
-<h2>Aktuelle Module</h2>
+<h3>Durchschnittsnote</h3>
 
-<ul>
-<li>Finanzierung & Investitionen</li>
-<li>Big Data & Data Science</li>
-<li>Künstliche Intelligenz</li>
-<li>IT Management</li>
-</ul>
+<h2 id="avg">-</h2>
 
 </div>
-
-</div>
-
-<!-- TIMELINE -->
-
-<div id="timeline" class="page" style="display:none">
 
 <div class="card">
 
-<h2>Studium Timeline</h2>
+<h3>Nächste Klausur</h3>
+
+<p>Künstliche Intelligenz</p>
+<p>25.07</p>
+
+</div>
+
+<div class="card wide">
+
+<h3>Studium Timeline</h3>
 
 <div class="timeline">
 
-<div class="semester">1</div>
-<div class="semester">2</div>
-<div class="semester">3</div>
-<div class="semester active">4</div>
-<div class="semester">5</div>
-<div class="semester">6</div>
+<div class="sem">1</div>
+<div class="sem">2</div>
+<div class="sem">3</div>
+<div class="sem">4</div>
+<div class="sem">5</div>
+<div class="sem">6</div>
 
 </div>
 
@@ -199,88 +216,51 @@ margin-bottom:6px;
 
 </div>
 
-<!-- MODULE -->
+</div>
 
-<div id="modules" class="page" style="display:none">
+<!-- STUDIUM -->
+
+<div id="study" class="page">
 
 <div class="card">
 
-<h2>Module Semester 4</h2>
-
-<ul>
-
-<li>Künstliche Intelligenz</li>
-<li>Big Data & Data Science</li>
-<li>Finanzierung & Investitionen</li>
-<li>IT Management</li>
-<li>Projekt Digitale Transformation</li>
-
-</ul>
-
-</div>
-
-</div>
-
-<!-- PROJEKTE -->
-
-<div id="projects" class="page" style="display:none">
-
-<div class="card">
-
-<h2>Projekt Tracker</h2>
-
-<div class="todo">
-<input type="checkbox"> Recherche
-</div>
-
-<div class="todo">
-<input type="checkbox"> Konzept
-</div>
-
-<div class="todo">
-<input type="checkbox"> Präsentation
-</div>
-
-<div class="todo">
-<input type="checkbox"> Dokumentation
-</div>
-
-</div>
-
-</div>
-
-<!-- KLAUSUREN -->
-
-<div id="exams" class="page" style="display:none">
-
-<div class="card">
-
-<h2>Klausurplaner</h2>
+<h3>Studienübersicht</h3>
 
 <table>
 
 <tr>
-<th>Modul</th>
-<th>Datum</th>
-<th>Lernstatus</th>
+<th>Semester</th>
+<th>Module</th>
 </tr>
 
 <tr>
-<td>Künstliche Intelligenz</td>
-<td>25.07</td>
-<td>30%</td>
+<td>1</td>
+<td>Management Basics, Mathematik, Digital Business</td>
 </tr>
 
 <tr>
-<td>Big Data</td>
-<td>20.07</td>
-<td>40%</td>
+<td>2</td>
+<td>Marketing, Buchführung, IT Recht</td>
 </tr>
 
 <tr>
-<td>Finanzierung</td>
-<td>15.07</td>
-<td>60%</td>
+<td>3</td>
+<td>Supply Chain, Innovation, Softwareentwicklung</td>
+</tr>
+
+<tr>
+<td>4</td>
+<td>Finanzierung, Big Data, KI, IT Management</td>
+</tr>
+
+<tr>
+<td>5</td>
+<td>Turnaround Management, Changemanagement</td>
+</tr>
+
+<tr>
+<td>6</td>
+<td>Thesis + Kolloquium</td>
 </tr>
 
 </table>
@@ -289,13 +269,107 @@ margin-bottom:6px;
 
 </div>
 
-<!-- KI LERNPLATTFORM -->
+<!-- NOTEN -->
 
-<div id="ai" class="page" style="display:none">
+<div id="grades" class="page">
 
 <div class="card">
 
-<h2>KI Lernplattform</h2>
+<h3>Notenverwaltung</h3>
+
+<table>
+
+<tr>
+<th>Modul</th>
+<th>Note</th>
+</tr>
+
+<tr>
+<td>Künstliche Intelligenz</td>
+<td><input id="g1" onchange="saveGrades()"></td>
+</tr>
+
+<tr>
+<td>Big Data</td>
+<td><input id="g2" onchange="saveGrades()"></td>
+</tr>
+
+<tr>
+<td>Finanzierung</td>
+<td><input id="g3" onchange="saveGrades()"></td>
+</tr>
+
+<tr>
+<td>IT Management</td>
+<td><input id="g4" onchange="saveGrades()"></td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- KLAUSUREN -->
+
+<div id="exams" class="page">
+
+<div class="card">
+
+<h3>Klausurplaner</h3>
+
+<table>
+
+<tr>
+<th>Modul</th>
+<th>Datum</th>
+</tr>
+
+<tr>
+<td>Künstliche Intelligenz</td>
+<td>25.07</td>
+</tr>
+
+<tr>
+<td>Big Data</td>
+<td>20.07</td>
+</tr>
+
+<tr>
+<td>Finanzierung</td>
+<td>15.07</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+<!-- PROJEKTE -->
+
+<div id="projects" class="page">
+
+<div class="card">
+
+<h3>Projekt Tracker</h3>
+
+<label><input type="checkbox"> Recherche</label><br>
+<label><input type="checkbox"> Konzept</label><br>
+<label><input type="checkbox"> Präsentation</label><br>
+<label><input type="checkbox"> Dokumentation</label>
+
+</div>
+
+</div>
+
+<!-- KI LERNEN -->
+
+<div id="learning" class="page">
+
+<div class="card">
+
+<h3>KI Lernplattform</h3>
 
 <ul>
 
@@ -313,13 +387,13 @@ margin-bottom:6px;
 
 <!-- NOTIZEN -->
 
-<div id="notes" class="page" style="display:none">
+<div id="notes" class="page">
 
 <div class="card">
 
-<h2>Notizen</h2>
+<h3>Notizen</h3>
 
-<textarea id="noteArea" rows="8"></textarea>
+<textarea id="noteArea" rows="10"></textarea>
 
 <button onclick="saveNotes()">Speichern</button>
 
@@ -327,29 +401,7 @@ margin-bottom:6px;
 
 </div>
 
-<!-- THESIS -->
-
-<div id="thesis" class="page" style="display:none">
-
-<div class="card">
-
-<h2>Thesis Planer</h2>
-
-<div class="todo"><input type="checkbox"> Thema finden</div>
-<div class="todo"><input type="checkbox"> Betreuer finden</div>
-<div class="todo"><input type="checkbox"> Exposé schreiben</div>
-<div class="todo"><input type="checkbox"> Recherche</div>
-<div class="todo"><input type="checkbox"> Schreiben</div>
-<div class="todo"><input type="checkbox"> Korrektur</div>
-<div class="todo"><input type="checkbox"> Abgabe</div>
-<div class="todo"><input type="checkbox"> Kolloquium</div>
-
 </div>
-
-</div>
-
-</div>
-
 </div>
 
 <script>
@@ -357,24 +409,64 @@ margin-bottom:6px;
 function showPage(page){
 
 document.querySelectorAll(".page").forEach(p=>{
-p.style.display="none";
-});
+p.style.display="none"
+})
 
-document.getElementById(page).style.display="block";
+document.getElementById(page).style.display="block"
 
 }
+
+/* NOTIZEN */
 
 function saveNotes(){
+localStorage.setItem("notes",noteArea.value)
+}
 
-localStorage.setItem("studyNotes",document.getElementById("noteArea").value);
+/* NOTEN */
+
+function saveGrades(){
+
+localStorage.setItem("g1",g1.value)
+localStorage.setItem("g2",g2.value)
+localStorage.setItem("g3",g3.value)
+localStorage.setItem("g4",g4.value)
+
+calcAvg()
 
 }
+
+/* DURCHSCHNITT */
+
+function calcAvg(){
+
+let grades=[g1.value,g2.value,g3.value,g4.value]
+
+let nums=grades.filter(x=>x!="").map(Number)
+
+if(nums.length===0)return
+
+let avg=(nums.reduce((a,b)=>a+b)/nums.length).toFixed(2)
+
+avgDiv.innerText=avg
+
+}
+
+/* LOAD */
 
 window.onload=function(){
 
-document.getElementById("noteArea").value=localStorage.getItem("studyNotes") || "";
+noteArea.value=localStorage.getItem("notes")||""
+
+g1.value=localStorage.getItem("g1")||""
+g2.value=localStorage.getItem("g2")||""
+g3.value=localStorage.getItem("g3")||""
+g4.value=localStorage.getItem("g4")||""
+
+calcAvg()
 
 }
+
+let avgDiv=document.getElementById("avg")
 
 </script>
 
