@@ -4,122 +4,261 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KI Lernplattform</title>
-    <link rel="stylesheet" href="style.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            background: #f4f6f9;
+            color: #333;
+        }
+
+        header {
+            position: fixed;
+            left: 250px;
+            right: 0;
+            top: 0;
+            height: 70px;
+            background: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        #darkModeToggle {
+            border: none;
+            padding: 8px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background: #1e293b;
+            position: fixed;
+            color: white;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #cbd5e1;
+            padding: 12px 20px;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #334155;
+        }
+
+        main {
+            margin-left: 250px;
+            margin-top: 80px;
+            padding: 20px;
+            width: 100%;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .card {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .progress-bar {
+            height: 15px;
+            background: #ddd;
+            border-radius: 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background: #3b82f6;
+            width: 0%;
+            border-radius: 10px;
+        }
+
+        .accordion-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            background: #e2e8f0;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 10px;
+        }
+
+        #quiz button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+        }
+
+        .dark-mode {
+            background: #0f172a;
+            color: white;
+        }
+
+        .dark-mode section {
+            background: #1e293b;
+        }
+    </style>
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <h1>KI Methoden & Anwendungen</h1>
-        <button id="darkModeToggle">🌙</button>
-    </header>
+<header>
+    <h1>KI Methoden & Anwendungen</h1>
+    <button id="darkModeToggle">🌙</button>
+</header>
 
-    <!-- SIDEBAR -->
-    <nav class="sidebar">
+<nav class="sidebar">
+    <a href="#dashboard">Dashboard</a>
+    <a href="#grundlagen">Grundlagen</a>
+    <a href="#ml">ML</a>
+    <a href="#nn">Neuronale Netze</a>
+    <a href="#algorithmen">Algorithmen</a>
+    <a href="#wissen">Wissen</a>
+    <a href="#quiz">Quiz</a>
+    <a href="#notizen">Notizen</a>
+</nav>
+
+<main>
+
+<section id="dashboard">
+    <h2>📊 Dashboard</h2>
+    <p>Willkommen zu deiner KI-Lernplattform.</p>
+
+    <div class="progress-bar">
+        <div class="progress" id="progressBar"></div>
+    </div>
+</section>
+
+<section id="grundlagen">
+    <h2>Grundlagen der KI</h2>
+    <ul>
+        <li>Definition</li>
+        <li>Schwache vs. starke KI</li>
+    </ul>
+</section>
+
+<section id="ml">
+    <h2>Maschinelles Lernen</h2>
+    <div class="card">
         <ul>
-            <li><a href="#dashboard">Dashboard</a></li>
-            <li><a href="#grundlagen">Grundlagen der KI</a></li>
-            <li><a href="#ml">Maschinelles Lernen</a></li>
-            <li><a href="#nn">Neuronale Netze</a></li>
-            <li><a href="#algorithmen">Suchalgorithmen</a></li>
-            <li><a href="#wissen">Wissensrepräsentation</a></li>
-            <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#notizen">Notizen</a></li>
+            <li>Überwachtes Lernen</li>
+            <li>Unüberwachtes Lernen</li>
         </ul>
-    </nav>
+    </div>
+</section>
 
-    <!-- MAIN CONTENT -->
-    <main>
+<section id="nn">
+    <h2>Neuronale Netze</h2>
+    <button class="accordion-btn">Was ist ein Neuron?</button>
+    <div class="accordion-content">
+        <p>Ein künstliches Neuron verarbeitet Eingaben.</p>
+    </div>
+</section>
 
-        <!-- DASHBOARD -->
-        <section id="dashboard">
-            <h2>📊 Dashboard</h2>
-            <p>Willkommen zu deiner persönlichen KI-Lernplattform.</p>
+<section id="algorithmen">
+    <h2>Suchalgorithmen</h2>
+    <ul>
+        <li>BFS</li>
+        <li>DFS</li>
+    </ul>
+</section>
 
-            <div class="progress-container">
-                <p>Fortschritt:</p>
-                <div class="progress-bar">
-                    <div class="progress" style="width: 40%"></div>
-                </div>
-            </div>
-        </section>
+<section id="wissen">
+    <h2>Wissensrepräsentation</h2>
+    <p>Darstellung von Wissen.</p>
+</section>
 
-        <!-- GRUNDLAGEN -->
-        <section id="grundlagen">
-            <h2>Grundlagen der KI</h2>
-            <p>Künstliche Intelligenz beschäftigt sich mit der Simulation intelligenten Verhaltens.</p>
-            <ul>
-                <li>Definition von KI</li>
-                <li>Schwache vs. starke KI</li>
-                <li>Anwendungsbereiche</li>
-            </ul>
-        </section>
+<section id="quiz">
+    <h2>Quiz</h2>
+    <p>Was ist überwachtes Lernen?</p>
 
-        <!-- MASCHINELLES LERNEN -->
-        <section id="ml">
-            <h2>Maschinelles Lernen</h2>
-            <p>ML ist ein Teilgebiet der KI, das aus Daten lernt.</p>
+    <button onclick="checkAnswer(true)">Mit Daten</button>
+    <button onclick="checkAnswer(false)">Zufällig</button>
 
-            <div class="card">
-                <h3>Arten von ML</h3>
-                <ul>
-                    <li>Überwachtes Lernen</li>
-                    <li>Unüberwachtes Lernen</li>
-                    <li>Reinforcement Learning</li>
-                </ul>
-            </div>
-        </section>
+    <p id="quizResult"></p>
+</section>
 
-        <!-- NEURONALE NETZE -->
-        <section id="nn">
-            <h2>Neuronale Netze</h2>
-            <p>Inspiriert vom menschlichen Gehirn.</p>
+<section id="notizen">
+    <h2>Notizen</h2>
+    <textarea id="notes"></textarea>
+    <button onclick="saveNotes()">Speichern</button>
+</section>
 
-            <div class="accordion">
-                <button class="accordion-btn">Was ist ein Neuron?</button>
-                <div class="accordion-content">
-                    <p>Ein künstliches Neuron verarbeitet Eingaben und gibt eine Ausgabe zurück.</p>
-                </div>
-            </div>
-        </section>
+</main>
 
-        <!-- SUCHALGORITHMEN -->
-        <section id="algorithmen">
-            <h2>Suchalgorithmen</h2>
-            <ul>
-                <li>Breitensuche (BFS)</li>
-                <li>Tiefensuche (DFS)</li>
-                <li>A*-Algorithmus</li>
-            </ul>
-        </section>
+<script>
+    // DARK MODE
+    document.getElementById("darkModeToggle").onclick = () => {
+        document.body.classList.toggle("dark-mode");
+    };
 
-        <!-- WISSENSREPRÄSENTATION -->
-        <section id="wissen">
-            <h2>Wissensrepräsentation</h2>
-            <p>Wie Wissen in Systemen gespeichert wird.</p>
-        </section>
+    // ACCORDION
+    document.querySelector(".accordion-btn").onclick = function () {
+        let content = this.nextElementSibling;
+        content.style.display =
+            content.style.display === "block" ? "none" : "block";
+    };
 
-        <!-- QUIZ -->
-        <section id="quiz">
-            <h2>🧪 Quiz</h2>
-            <p>Was ist überwachtes Lernen?</p>
+    // QUIZ
+    let progress = 0;
 
-            <button onclick="checkAnswer(true)">Lernen mit gelabelten Daten</button>
-            <button onclick="checkAnswer(false)">Zufälliges Lernen</button>
+    function checkAnswer(correct) {
+        let result = document.getElementById("quizResult");
 
-            <p id="quizResult"></p>
-        </section>
+        if (correct) {
+            result.textContent = "Richtig!";
+            progress += 20;
+            if (progress > 100) progress = 100;
+            document.getElementById("progressBar").style.width = progress + "%";
+        } else {
+            result.textContent = "Falsch!";
+        }
+    }
 
-        <!-- NOTIZEN -->
-        <section id="notizen">
-            <h2>📝 Notizen</h2>
-            <textarea id="notes" placeholder="Schreibe deine Notizen hier..."></textarea>
-            <button onclick="saveNotes()">Speichern</button>
-        </section>
+    // NOTIZEN
+    function saveNotes() {
+        localStorage.setItem("notes", document.getElementById("notes").value);
+        alert("Gespeichert!");
+    }
 
-    </main>
-
-    <script src="script.js"></script>
+    window.onload = () => {
+        let saved = localStorage.getItem("notes");
+        if (saved) document.getElementById("notes").value = saved;
+    };
+</script>
 
 </body>
 </html>
