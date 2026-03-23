@@ -1,61 +1,125 @@
-<!-- ================= MACHINE LEARNING DETAILS ================= -->
-<section id="ml-details">
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KI Lernplattform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<h2>Machine Learning und seine Unterkategorien</h2>
+    <!-- HEADER -->
+    <header>
+        <h1>KI Methoden & Anwendungen</h1>
+        <button id="darkModeToggle">🌙</button>
+    </header>
 
-<div class="overview">
-<p>
-Machine Learning ist ein Teilbereich der KI, bei dem Systeme aus Daten lernen.
-Man unterscheidet drei zentrale Lernarten:
-</p>
-</div>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#grundlagen">Grundlagen der KI</a></li>
+            <li><a href="#ml">Maschinelles Lernen</a></li>
+            <li><a href="#nn">Neuronale Netze</a></li>
+            <li><a href="#algorithmen">Suchalgorithmen</a></li>
+            <li><a href="#wissen">Wissensrepräsentation</a></li>
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#notizen">Notizen</a></li>
+        </ul>
+    </nav>
 
-<br>
+    <!-- MAIN CONTENT -->
+    <main>
 
-<div class="grid">
+        <!-- DASHBOARD -->
+        <section id="dashboard">
+            <h2>📊 Dashboard</h2>
+            <p>Willkommen zu deiner persönlichen KI-Lernplattform.</p>
 
-<div class="card">
-<i class="fas fa-check-circle"></i>
-<h3>Überwachtes Lernen</h3>
-<p>
-Das Modell lernt anhand von gelabelten Daten.
-Beispiele: Klassifikation von E-Mails (Spam/Nicht-Spam).
-</p>
-</div>
+            <div class="progress-container">
+                <p>Fortschritt:</p>
+                <div class="progress-bar">
+                    <div class="progress" style="width: 40%"></div>
+                </div>
+            </div>
+        </section>
 
-<div class="card">
-<i class="fas fa-search"></i>
-<h3>Unüberwachtes Lernen</h3>
-<p>
-Das System erkennt Muster ohne vorgegebene Labels.
-Beispiele: Kundensegmentierung.
-</p>
-</div>
+        <!-- GRUNDLAGEN -->
+        <section id="grundlagen">
+            <h2>Grundlagen der KI</h2>
+            <p>Künstliche Intelligenz beschäftigt sich mit der Simulation intelligenten Verhaltens.</p>
+            <ul>
+                <li>Definition von KI</li>
+                <li>Schwache vs. starke KI</li>
+                <li>Anwendungsbereiche</li>
+            </ul>
+        </section>
 
-<div class="card">
-<i class="fas fa-gamepad"></i>
-<h3>Bestärkendes Lernen</h3>
-<p>
-Ein Agent lernt durch Belohnung und Bestrafung.
-Beispiele: Spiel-KI oder Robotik.
-</p>
-</div>
+        <!-- MASCHINELLES LERNEN -->
+        <section id="ml">
+            <h2>Maschinelles Lernen</h2>
+            <p>ML ist ein Teilgebiet der KI, das aus Daten lernt.</p>
 
-</div>
+            <div class="card">
+                <h3>Arten von ML</h3>
+                <ul>
+                    <li>Überwachtes Lernen</li>
+                    <li>Unüberwachtes Lernen</li>
+                    <li>Reinforcement Learning</li>
+                </ul>
+            </div>
+        </section>
 
-<br><br>
+        <!-- NEURONALE NETZE -->
+        <section id="nn">
+            <h2>Neuronale Netze</h2>
+            <p>Inspiriert vom menschlichen Gehirn.</p>
 
-<div class="grid">
+            <div class="accordion">
+                <button class="accordion-btn">Was ist ein Neuron?</button>
+                <div class="accordion-content">
+                    <p>Ein künstliches Neuron verarbeitet Eingaben und gibt eine Ausgabe zurück.</p>
+                </div>
+            </div>
+        </section>
 
-<div class="card">
-<i class="fas fa-layer-group"></i>
-<h3>Deep Learning</h3>
-<p>
-Spezielle Form des Machine Learning mit tiefen neuronalen Netzen.
-Besonders geeignet für Bilderkennung, Sprache und komplexe Muster.
-</p>
-</div>
+        <!-- SUCHALGORITHMEN -->
+        <section id="algorithmen">
+            <h2>Suchalgorithmen</h2>
+            <ul>
+                <li>Breitensuche (BFS)</li>
+                <li>Tiefensuche (DFS)</li>
+                <li>A*-Algorithmus</li>
+            </ul>
+        </section>
 
-</div>
+        <!-- WISSENSREPRÄSENTATION -->
+        <section id="wissen">
+            <h2>Wissensrepräsentation</h2>
+            <p>Wie Wissen in Systemen gespeichert wird.</p>
+        </section>
 
-</section>
+        <!-- QUIZ -->
+        <section id="quiz">
+            <h2>🧪 Quiz</h2>
+            <p>Was ist überwachtes Lernen?</p>
+
+            <button onclick="checkAnswer(true)">Lernen mit gelabelten Daten</button>
+            <button onclick="checkAnswer(false)">Zufälliges Lernen</button>
+
+            <p id="quizResult"></p>
+        </section>
+
+        <!-- NOTIZEN -->
+        <section id="notizen">
+            <h2>📝 Notizen</h2>
+            <textarea id="notes" placeholder="Schreibe deine Notizen hier..."></textarea>
+            <button onclick="saveNotes()">Speichern</button>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
