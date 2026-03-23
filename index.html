@@ -1,474 +1,337 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>StudyOS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KI-Methoden und Anwendungen</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Font Awesome Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-*{box-sizing:border-box}
+/* ===== Grundlayout ===== */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
 
 body{
-margin:0;
-font-family:Inter,Arial;
-background:#f4f6fb;
-color:#222;
+line-height:1.6;
+background:#f5f7fb;
+color:#333;
 }
 
-.container{
+/* ===== Navigation ===== */
+nav{
+background:#0d3b66;
+padding:15px 40px;
+position:sticky;
+top:0;
+z-index:1000;
+}
+
+nav ul{
 display:flex;
-height:100vh;
+list-style:none;
+justify-content:center;
+flex-wrap:wrap;
 }
 
-/* SIDEBAR */
-
-.sidebar{
-width:240px;
-background:white;
-border-right:1px solid #eee;
-padding:25px;
+nav ul li{
+margin:0 15px;
 }
 
-.sidebar h2{
-margin-bottom:30px;
-}
-
-.sidebar a{
-display:block;
-padding:10px;
-margin-bottom:6px;
-border-radius:8px;
-cursor:pointer;
+nav ul li a{
+color:white;
 text-decoration:none;
-color:#444;
+font-weight:500;
+transition:0.3s;
 }
 
-.sidebar a:hover{
-background:#eef1ff;
+nav ul li a:hover{
+color:#6ec1ff;
 }
 
-/* MAIN */
-
-.main{
-flex:1;
-padding:30px;
-overflow-y:auto;
+/* ===== Hero Section ===== */
+.hero{
+background:linear-gradient(135deg,#0d3b66,#1c7ed6);
+color:white;
+text-align:center;
+padding:120px 20px;
 }
 
-/* BENTO GRID */
+.hero h1{
+font-size:3rem;
+margin-bottom:20px;
+}
 
+.hero p{
+max-width:700px;
+margin:auto;
+font-size:1.2rem;
+}
+
+/* ===== Sections ===== */
+section{
+padding:80px 10%;
+}
+
+section h2{
+text-align:center;
+margin-bottom:40px;
+font-size:2rem;
+color:#0d3b66;
+}
+
+/* ===== Grid Layout ===== */
 .grid{
 display:grid;
-grid-template-columns:repeat(4,1fr);
-grid-gap:20px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
 }
 
+/* ===== Karten Design ===== */
 .card{
 background:white;
-border-radius:16px;
-padding:20px;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
-}
-
-.big{grid-column:span 2}
-.wide{grid-column:span 4}
-
-/* PROGRESS */
-
-.progress{
-height:10px;
-background:#eee;
+padding:25px;
 border-radius:10px;
-overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,0.08);
+transition:0.3s;
+text-align:center;
 }
 
-.progress-bar{
-height:10px;
-background:#6e7cff;
+.card i{
+font-size:35px;
+color:#1c7ed6;
+margin-bottom:15px;
 }
 
-/* TABLE */
-
-table{
-width:100%;
-border-collapse:collapse;
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 }
 
-th,td{
-padding:10px;
-border-bottom:1px solid #eee;
+.card h3{
+margin-bottom:10px;
 }
 
-input{
-padding:6px;
-border:1px solid #ddd;
-border-radius:6px;
-width:70px;
+/* ===== Überblick Text ===== */
+.overview{
+max-width:900px;
+margin:auto;
+text-align:center;
+font-size:1.1rem;
 }
 
-textarea{
-width:100%;
-border:1px solid #ddd;
-border-radius:8px;
-padding:10px;
-}
-
-/* TIMELINE */
-
-.timeline{
-display:flex;
-justify-content:space-between;
-margin-top:10px;
-}
-
-.sem{
-background:#eef0ff;
-padding:10px 14px;
-border-radius:10px;
-font-weight:600;
-}
-
-button{
-padding:8px 14px;
-background:#6e7cff;
-border:none;
-border-radius:8px;
+/* ===== Footer ===== */
+footer{
+background:#0d3b66;
 color:white;
-cursor:pointer;
+text-align:center;
+padding:40px 20px;
 }
 
-.page{display:none}
+footer p{
+margin:8px 0;
+}
+
+/* ===== Responsive Anpassungen ===== */
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.2rem;
+}
+
+section{
+padding:60px 6%;
+}
+
+}
 
 </style>
 </head>
-
 <body>
 
-<div class="container">
+<!-- ================= NAVIGATION ================= -->
+<nav>
+<ul>
+<li><a href="#overview">Überblick</a></li>
+<li><a href="#methods">KI-Methoden</a></li>
+<li><a href="#applications">Anwendungen</a></li>
+<li><a href="#advantages">Chancen & Risiken</a></li>
+<li><a href="#footer">Kontakt</a></li>
+</ul>
+</nav>
 
-<div class="sidebar">
 
-<h2>StudyOS</h2>
+<!-- ================= HERO SECTION ================= -->
+<header class="hero">
 
-<a onclick="showPage('dashboard')">Dashboard</a>
-<a onclick="showPage('study')">Studium</a>
-<a onclick="showPage('grades')">Noten</a>
-<a onclick="showPage('exams')">Klausuren</a>
-<a onclick="showPage('projects')">Projekte</a>
-<a onclick="showPage('learning')">KI Lernen</a>
-<a onclick="showPage('notes')">Notizen</a>
+<h1>KI-Methoden und Anwendungen</h1>
+
+<p>
+Künstliche Intelligenz verändert Wirtschaft, Wissenschaft und Gesellschaft.  
+Diese Website bietet Studierenden einen Überblick über wichtige Methoden, Technologien und Einsatzbereiche moderner KI-Systeme.
+</p>
+
+</header>
+
+
+<!-- ================= ÜBERBLICK ================= -->
+<section id="overview">
+
+<h2>Überblick über Künstliche Intelligenz</h2>
+
+<div class="overview">
+
+<p>
+Künstliche Intelligenz (KI) beschreibt Computersysteme, die Aufgaben ausführen können,
+die normalerweise menschliche Intelligenz erfordern. Dazu gehören das Lernen aus Daten,
+das Erkennen von Mustern, das Verstehen von Sprache und das Treffen von Entscheidungen.
+</p>
+
+<br>
+
+<p>
+Heute wird KI in vielen Bereichen eingesetzt – von medizinischer Diagnostik über
+Sprachassistenten bis hin zu autonomen Fahrzeugen.
+</p>
 
 </div>
 
-<div class="main">
+</section>
 
-<!-- DASHBOARD -->
 
-<div id="dashboard" class="page" style="display:block">
+<!-- ================= METHODEN ================= -->
+<section id="methods">
+
+<h2>Wichtige KI-Methoden</h2>
 
 <div class="grid">
 
-<div class="card big">
-
-<h3>Studienfortschritt</h3>
-
-<p>Semester 4 / 6</p>
-
-<div class="progress">
-<div class="progress-bar" style="width:66%"></div>
-</div>
-
+<div class="card">
+<i class="fas fa-brain"></i>
+<h3>Machine Learning</h3>
+<p>Algorithmen lernen Muster aus Daten und verbessern ihre Leistung automatisch.</p>
 </div>
 
 <div class="card">
-
-<h3>Durchschnittsnote</h3>
-
-<h2 id="avg">-</h2>
-
+<i class="fas fa-network-wired"></i>
+<h3>Deep Learning</h3>
+<p>Verwendung tiefer neuronaler Netze zur Analyse komplexer Datenstrukturen.</p>
 </div>
 
 <div class="card">
-
-<h3>Nächste Klausur</h3>
-
-<p>Künstliche Intelligenz</p>
-<p>25.07</p>
-
+<i class="fas fa-project-diagram"></i>
+<h3>Neuronale Netze</h3>
+<p>Computermodelle, die dem Aufbau des menschlichen Gehirns nachempfunden sind.</p>
 </div>
-
-<div class="card wide">
-
-<h3>Studium Timeline</h3>
-
-<div class="timeline">
-
-<div class="sem">1</div>
-<div class="sem">2</div>
-<div class="sem">3</div>
-<div class="sem">4</div>
-<div class="sem">5</div>
-<div class="sem">6</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- STUDIUM -->
-
-<div id="study" class="page">
 
 <div class="card">
-
-<h3>Studienübersicht</h3>
-
-<table>
-
-<tr>
-<th>Semester</th>
-<th>Module</th>
-</tr>
-
-<tr>
-<td>1</td>
-<td>Management Basics, Mathematik, Digital Business</td>
-</tr>
-
-<tr>
-<td>2</td>
-<td>Marketing, Buchführung, IT Recht</td>
-</tr>
-
-<tr>
-<td>3</td>
-<td>Supply Chain, Innovation, Softwareentwicklung</td>
-</tr>
-
-<tr>
-<td>4</td>
-<td>Finanzierung, Big Data, KI, IT Management</td>
-</tr>
-
-<tr>
-<td>5</td>
-<td>Turnaround Management, Changemanagement</td>
-</tr>
-
-<tr>
-<td>6</td>
-<td>Thesis + Kolloquium</td>
-</tr>
-
-</table>
-
+<i class="fas fa-language"></i>
+<h3>Natural Language Processing</h3>
+<p>Ermöglicht Computern, menschliche Sprache zu verstehen und zu erzeugen.</p>
 </div>
-
-</div>
-
-<!-- NOTEN -->
-
-<div id="grades" class="page">
 
 <div class="card">
-
-<h3>Notenverwaltung</h3>
-
-<table>
-
-<tr>
-<th>Modul</th>
-<th>Note</th>
-</tr>
-
-<tr>
-<td>Künstliche Intelligenz</td>
-<td><input id="g1" onchange="saveGrades()"></td>
-</tr>
-
-<tr>
-<td>Big Data</td>
-<td><input id="g2" onchange="saveGrades()"></td>
-</tr>
-
-<tr>
-<td>Finanzierung</td>
-<td><input id="g3" onchange="saveGrades()"></td>
-</tr>
-
-<tr>
-<td>IT Management</td>
-<td><input id="g4" onchange="saveGrades()"></td>
-</tr>
-
-</table>
-
+<i class="fas fa-eye"></i>
+<h3>Computer Vision</h3>
+<p>Analyse und Interpretation von Bildern und Videos durch KI-Systeme.</p>
 </div>
 
 </div>
 
-<!-- KLAUSUREN -->
+</section>
 
-<div id="exams" class="page">
+
+<!-- ================= ANWENDUNGEN ================= -->
+<section id="applications">
+
+<h2>Anwendungsbereiche</h2>
+
+<div class="grid">
 
 <div class="card">
-
-<h3>Klausurplaner</h3>
-
-<table>
-
-<tr>
-<th>Modul</th>
-<th>Datum</th>
-</tr>
-
-<tr>
-<td>Künstliche Intelligenz</td>
-<td>25.07</td>
-</tr>
-
-<tr>
-<td>Big Data</td>
-<td>20.07</td>
-</tr>
-
-<tr>
-<td>Finanzierung</td>
-<td>15.07</td>
-</tr>
-
-</table>
-
+<i class="fas fa-heartbeat"></i>
+<h3>Medizin</h3>
+<p>KI unterstützt Ärzte bei Diagnosen, Bildanalyse und personalisierter Medizin.</p>
 </div>
-
-</div>
-
-<!-- PROJEKTE -->
-
-<div id="projects" class="page">
 
 <div class="card">
-
-<h3>Projekt Tracker</h3>
-
-<label><input type="checkbox"> Recherche</label><br>
-<label><input type="checkbox"> Konzept</label><br>
-<label><input type="checkbox"> Präsentation</label><br>
-<label><input type="checkbox"> Dokumentation</label>
-
+<i class="fas fa-car"></i>
+<h3>Autonomes Fahren</h3>
+<p>Selbstfahrende Fahrzeuge nutzen Sensoren, Computer Vision und Machine Learning.</p>
 </div>
-
-</div>
-
-<!-- KI LERNEN -->
-
-<div id="learning" class="page">
 
 <div class="card">
-
-<h3>KI Lernplattform</h3>
-
-<ul>
-
-<li>Machine Learning</li>
-<li>Supervised Learning</li>
-<li>Unsupervised Learning</li>
-<li>Neuronale Netze</li>
-<li>Evaluationsmetriken</li>
-
-</ul>
-
+<i class="fas fa-robot"></i>
+<h3>Chatbots</h3>
+<p>Virtuelle Assistenten beantworten Fragen und automatisieren Kundenservice.</p>
 </div>
-
-</div>
-
-<!-- NOTIZEN -->
-
-<div id="notes" class="page">
 
 <div class="card">
-
-<h3>Notizen</h3>
-
-<textarea id="noteArea" rows="10"></textarea>
-
-<button onclick="saveNotes()">Speichern</button>
-
+<i class="fas fa-industry"></i>
+<h3>Industrie & Automatisierung</h3>
+<p>Optimierung von Produktionsprozessen durch intelligente Systeme.</p>
 </div>
 
 </div>
 
+</section>
+
+
+<!-- ================= CHANCEN & RISIKEN ================= -->
+<section id="advantages">
+
+<h2>Vorteile und Herausforderungen</h2>
+
+<div class="grid">
+
+<div class="card">
+<i class="fas fa-chart-line"></i>
+<h3>Chancen</h3>
+<p>
+Effizienzsteigerung, bessere Datenanalyse,
+neue Innovationen und Unterstützung
+bei komplexen Entscheidungen.
+</p>
 </div>
+
+<div class="card">
+<i class="fas fa-scale-balanced"></i>
+<h3>Risiken & Ethik</h3>
+<p>
+Datenschutz, algorithmische Bias,
+Arbeitsmarktveränderungen und
+ethische Verantwortung beim Einsatz von KI.
+</p>
 </div>
 
-<script>
+</div>
 
-function showPage(page){
+</section>
 
-document.querySelectorAll(".page").forEach(p=>{
-p.style.display="none"
-})
 
-document.getElementById(page).style.display="block"
+<!-- ================= FOOTER ================= -->
+<footer id="footer">
 
-}
+<p><strong>KI-Methoden und Anwendungen</strong></p>
 
-/* NOTIZEN */
+<p>Quellen: Lehrbücher, wissenschaftliche Publikationen und Online-Ressourcen zu KI.</p>
 
-function saveNotes(){
-localStorage.setItem("notes",noteArea.value)
-}
+<p>Kontakt | Impressum | Datenschutz (Platzhalter)</p>
 
-/* NOTEN */
+<p>© 2026 KI Lernplattform</p>
 
-function saveGrades(){
+</footer>
 
-localStorage.setItem("g1",g1.value)
-localStorage.setItem("g2",g2.value)
-localStorage.setItem("g3",g3.value)
-localStorage.setItem("g4",g4.value)
-
-calcAvg()
-
-}
-
-/* DURCHSCHNITT */
-
-function calcAvg(){
-
-let grades=[g1.value,g2.value,g3.value,g4.value]
-
-let nums=grades.filter(x=>x!="").map(Number)
-
-if(nums.length===0)return
-
-let avg=(nums.reduce((a,b)=>a+b)/nums.length).toFixed(2)
-
-avgDiv.innerText=avg
-
-}
-
-/* LOAD */
-
-window.onload=function(){
-
-noteArea.value=localStorage.getItem("notes")||""
-
-g1.value=localStorage.getItem("g1")||""
-g2.value=localStorage.getItem("g2")||""
-g3.value=localStorage.getItem("g3")||""
-g4.value=localStorage.getItem("g4")||""
-
-calcAvg()
-
-}
-
-let avgDiv=document.getElementById("avg")
-
-</script>
 
 </body>
 </html>
