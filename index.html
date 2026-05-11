@@ -1,728 +1,753 @@
-# KI Lernplattform – Moderne Struktur für „KI Methoden & Anwendungen"
 
-```html
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nele AI Learn</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nele AI Learn</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
+<style>
 
-    :root {
-      --bg: #fffdfc;
-      --sidebar: #fff6f8;
-      --card: rgba(255,255,255,0.75);
-      --primary: #f4d6dc;
-      --primary-dark: #e7bcc5;
-      --secondary: #ffeef2;
-      --text: #4b4453;
-      --text-light: #8c8593;
-      --shadow: 0 10px 30px rgba(233, 193, 202, 0.18);
-      --border: rgba(255,255,255,0.5);
-      --radius: 26px;
-    }
+:root {
+    --bg: #fffdfd;
+    --primary: #f9dce3;
+    --secondary: #fff3f6;
+    --accent: #e8b7c1;
+    --text: #4b4453;
+    --light-text: #8f8795;
+    --white: #ffffff;
+    --shadow: 0 10px 40px rgba(236, 185, 198, 0.18);
+    --radius: 32px;
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
 
-    body {
-      font-family: "Inter", sans-serif;
-      background: linear-gradient(to bottom right, #fffdfc, #fff4f7);
-      color: var(--text);
-      display: flex;
-      min-height: 100vh;
-    }
+body {
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(to bottom right, #fffdfd, #fff4f7);
+    color: var(--text);
+}
 
-    .sidebar {
-      width: 260px;
-      height: 100vh;
-      position: fixed;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(20px);
-      border-right: 1px solid rgba(255,255,255,0.4);
-      padding: 30px 20px;
-      overflow-y: auto;
-      z-index: 1000;
-    }
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
 
-    .logo {
-      margin-bottom: 40px;
-    }
+.navbar {
+    max-width: 1400px;
+    margin: auto;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
 
-    .logo h1 {
-      font-size: 1.8rem;
-      color: #d78c9d;
-      font-weight: 700;
-      letter-spacing: -1px;
-    }
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
 
-    .logo span {
-      display: block;
-      font-size: 0.9rem;
-      color: var(--text-light);
-      margin-top: 4px;
-    }
+.logo-circle {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f9dce3, #e7b6c2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3rem;
+    box-shadow: var(--shadow);
+}
 
-    .sidebar nav a {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text);
-      padding: 14px 18px;
-      margin-bottom: 10px;
-      border-radius: 18px;
-      transition: 0.3s ease;
-      font-size: 0.96rem;
-    }
+.logo h1 {
+    font-size: 1.1rem;
+}
 
-    .sidebar nav a:hover {
-      background: var(--primary);
-      transform: translateX(4px);
-    }
+.logo span {
+    color: var(--light-text);
+    font-size: 0.82rem;
+}
 
-    main {
-      margin-left: 260px;
-      width: calc(100% - 260px);
-      padding: 40px;
+nav {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text);
+    padding: 12px 18px;
+    border-radius: 18px;
+    transition: 0.3s ease;
+    white-space: nowrap;
+    font-size: 0.94rem;
+}
+
+nav a:hover {
+    background: var(--primary);
+}
+
+main {
+    max-width: 1400px;
+    margin: auto;
+    padding: 30px;
+}
+
+.hero {
+    background: linear-gradient(135deg, #fff3f6, #ffffff);
+    padding: 70px 50px;
+    border-radius: 42px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 40px;
+}
+
+.hero::after {
+    content: "";
+    width: 360px;
+    height: 360px;
+    background: rgba(255,255,255,0.4);
+    position: absolute;
+    border-radius: 50%;
+    top: -120px;
+    right: -120px;
+}
+
+.hero h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero p {
+    max-width: 700px;
+    line-height: 1.9;
+    color: var(--light-text);
+    position: relative;
+    z-index: 2;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(18px);
+    border-radius: var(--radius);
+    padding: 28px;
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    margin-bottom: 12px;
+}
+
+.card p {
+    color: var(--light-text);
+    line-height: 1.7;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 14px;
+    background: #fde7ed;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 16px;
+}
+
+.progress {
+    width: 35%;
+    height: 100%;
+    background: linear-gradient(to right, #f1bcc8, #d98fa1);
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 28px;
+}
+
+.topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.topic-card {
+    background: white;
+    border-radius: 30px;
+    padding: 28px;
+    box-shadow: var(--shadow);
+    transition: 0.3s ease;
+}
+
+.topic-card:hover {
+    transform: translateY(-5px);
+}
+
+.topic-card h4 {
+    margin-bottom: 12px;
+}
+
+.topic-card ul {
+    padding-left: 18px;
+    line-height: 1.9;
+    color: var(--light-text);
+}
+
+.flashcards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-bottom: 60px;
+}
+
+.flashcard {
+    height: 230px;
+    perspective: 1000px;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 30px;
+    padding: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.flashcard-front {
+    background: linear-gradient(135deg, #fff3f6, white);
+    font-weight: 600;
+}
+
+.flashcard-back {
+    background: white;
+    transform: rotateY(180deg);
+    color: var(--light-text);
+    line-height: 1.8;
+}
+
+.quiz-box {
+    background: white;
+    border-radius: 36px;
+    padding: 36px;
+    box-shadow: var(--shadow);
+    margin-bottom: 60px;
+}
+
+.quiz-question {
+    font-size: 1.3rem;
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+
+.quiz-options button {
+    width: 100%;
+    border: none;
+    padding: 16px;
+    margin-bottom: 14px;
+    border-radius: 18px;
+    background: #fff3f6;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-size: 0.95rem;
+}
+
+.quiz-options button:hover {
+    background: var(--primary);
+}
+
+#feedback {
+    margin-top: 20px;
+    color: var(--light-text);
+    line-height: 1.7;
+}
+
+.upload-box {
+    background: linear-gradient(135deg, #fff3f6, white);
+    border-radius: 36px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    margin-bottom: 60px;
+}
+
+.upload-box p {
+    color: var(--light-text);
+    margin-top: 10px;
+    line-height: 1.7;
+}
+
+.upload-box input {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 220px;
+    border: none;
+    border-radius: 28px;
+    padding: 24px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    box-shadow: var(--shadow);
+}
+
+.save-btn {
+    margin-top: 16px;
+    border: none;
+    background: linear-gradient(to right, #f1bcc8, #d98fa1);
+    color: white;
+    padding: 15px 24px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    color: var(--light-text);
+}
+
+@media(max-width: 900px) {
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
     }
 
     .hero {
-      background: linear-gradient(135deg, #ffeef2, #fff);
-      padding: 40px;
-      border-radius: 35px;
-      box-shadow: var(--shadow);
-      margin-bottom: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      width: 250px;
-      height: 250px;
-      background: rgba(255,255,255,0.4);
-      border-radius: 50%;
-      position: absolute;
-      right: -80px;
-      top: -80px;
+        padding: 40px 30px;
     }
 
     .hero h2 {
-      font-size: 2.4rem;
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 2;
+        font-size: 2rem;
     }
 
-    .hero p {
-      color: var(--text-light);
-      line-height: 1.7;
-      max-width: 700px;
-      position: relative;
-      z-index: 2;
+    main {
+        padding: 18px;
     }
 
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-      margin-bottom: 35px;
-    }
+}
 
-    .card {
-      background: var(--card);
-      backdrop-filter: blur(18px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    .card p {
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .progress-container {
-      margin-top: 18px;
-    }
-
-    .progress-bar {
-      height: 14px;
-      background: #f7dfe4;
-      border-radius: 30px;
-      overflow: hidden;
-    }
-
-    .progress {
-      width: 25%;
-      height: 100%;
-      background: linear-gradient(to right, #f3b7c4, #d78c9d);
-      border-radius: 30px;
-    }
-
-    section {
-      margin-bottom: 35px;
-    }
-
-    .section-title {
-      margin-bottom: 18px;
-      font-size: 1.5rem;
-    }
-
-    .topic-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 22px;
-    }
-
-    .topic-card {
-      background: white;
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: 0.3s ease;
-    }
-
-    .topic-card:hover {
-      transform: translateY(-4px);
-    }
-
-    .topic-card h4 {
-      margin-bottom: 10px;
-      font-size: 1.1rem;
-    }
-
-    .topic-card ul {
-      padding-left: 18px;
-      color: var(--text-light);
-      line-height: 1.8;
-    }
-
-    .flashcards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
-
-    .flashcard {
-      perspective: 1000px;
-      height: 220px;
-    }
-
-    .flashcard-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      transition: transform 0.7s;
-      transform-style: preserve-3d;
-      cursor: pointer;
-    }
-
-    .flashcard.flipped .flashcard-inner {
-      transform: rotateY(180deg);
-    }
-
-    .flashcard-front,
-    .flashcard-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 28px;
-      padding: 25px;
-      box-shadow: var(--shadow);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-    }
-
-    .flashcard-front {
-      background: linear-gradient(135deg, #ffeef2, #fff);
-      font-weight: 600;
-    }
-
-    .flashcard-back {
-      background: white;
-      transform: rotateY(180deg);
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    .quiz-box {
-      background: white;
-      border-radius: 28px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .quiz-box h4 {
-      margin-bottom: 18px;
-    }
-
-    .quiz-options button {
-      width: 100%;
-      margin-bottom: 12px;
-      border: none;
-      padding: 14px;
-      border-radius: 18px;
-      background: #fff2f5;
-      cursor: pointer;
-      transition: 0.3s ease;
-      font-size: 0.95rem;
-    }
-
-    .quiz-options button:hover {
-      background: var(--primary);
-    }
-
-    #quiz-result {
-      margin-top: 14px;
-      font-weight: 600;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 180px;
-      border: none;
-      border-radius: 22px;
-      padding: 18px;
-      resize: vertical;
-      background: #fff;
-      box-shadow: var(--shadow);
-      font-family: inherit;
-      font-size: 0.95rem;
-      color: var(--text);
-    }
-
-    .save-btn {
-      margin-top: 14px;
-      border: none;
-      background: linear-gradient(to right, #f1bcc8, #d78c9d);
-      color: white;
-      padding: 14px 22px;
-      border-radius: 18px;
-      cursor: pointer;
-      font-weight: 600;
-    }
-
-    footer {
-      margin-top: 50px;
-      text-align: center;
-      color: var(--text-light);
-      padding-bottom: 40px;
-    }
-
-    @media (max-width: 900px) {
-
-      body {
-        flex-direction: column;
-      }
-
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.4);
-      }
-
-      main {
-        margin-left: 0;
-        width: 100%;
-        padding: 20px;
-      }
-
-      .hero h2 {
-        font-size: 1.8rem;
-      }
-
-      .sidebar nav {
-        display: flex;
-        overflow-x: auto;
-        gap: 10px;
-      }
-
-      .sidebar nav a {
-        white-space: nowrap;
-        margin-bottom: 0;
-      }
-
-    }
-
-  </style>
+</style>
 </head>
 
 <body>
 
-  <aside class="sidebar">
+<header>
+<div class="navbar">
 
-    <div class="logo">
-      <h1>NELE AI</h1>
-      <span>KI Methoden & Anwendungen</span>
-    </div>
+<div class="logo">
+<div class="logo-circle">🧠</div>
 
-    <nav>
-      <a href="#dashboard">🏠 Dashboard</a>
-      <a href="#grundlagen">🧠 Grundlagen</a>
-      <a href="#ml">📊 Machine Learning</a>
-      <a href="#deep">🔗 Deep Learning</a>
-      <a href="#algorithmen">⚡ Algorithmen</a>
-      <a href="#flashcards">📝 Lernkarten</a>
-      <a href="#quiz">❓ Quiz</a>
-      <a href="#notizen">📚 Notizen</a>
-    </nav>
+<div>
+<h1>Nele AI Learn</h1>
+<span>KI Methoden & Anwendungen</span>
+</div>
+</div>
 
-  </aside>
+<nav>
+<a href="#dashboard">Dashboard</a>
+<a href="#grundlagen">Grundlagen</a>
+<a href="#ml">Machine Learning</a>
+<a href="#deep">Deep Learning</a>
+<a href="#flashcards">Lernkarten</a>
+<a href="#quiz">Quiz</a>
+<a href="#upload">Upload</a>
+<a href="#notes">Notizen</a>
+</nav>
 
-  <main>
+</div>
+</header>
 
-    <section class="hero" id="dashboard">
-      <h2>Willkommen zurück, Nele 👋</h2>
-      <p>
-        Deine persönliche KI-Lernplattform für das Fach „KI Methoden & Anwendungen“.
-        Hier dokumentierst du Vorlesungsinhalte, lernst mit interaktiven Karten,
-        überprüfst dein Wissen mit Quizfragen und organisierst deinen Lernfortschritt.
-      </p>
-    </section>
+<main>
 
-    <div class="dashboard-grid">
+<section class="hero" id="dashboard">
+<h2>Willkommen zurück, Nele ✨</h2>
+<p>
+Deine moderne KI-Lernplattform für Vorlesungen, Zusammenfassungen,
+Quizfragen und interaktives Lernen.
+Organisiere dein gesamtes Wissen an einem Ort.
+</p>
+</section>
 
-      <div class="card">
-        <h3>📈 Lernfortschritt</h3>
-        <p>Du hast bereits erste Grundlagen abgeschlossen.</p>
+<div class="dashboard-grid">
 
-        <div class="progress-container">
-          <div class="progress-bar">
-            <div class="progress"></div>
-          </div>
-        </div>
-      </div>
+<div class="card">
+<h3>📈 Lernfortschritt</h3>
+<p>Du hast bereits erste Grundlagen abgeschlossen.</p>
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+</div>
 
-      <div class="card">
-        <h3>📖 Aktuelles Thema</h3>
-        <p>
-          Einführung in Künstliche Intelligenz & Grundlagen des Machine Learnings.
-        </p>
-      </div>
+<div class="card">
+<h3>🧠 Fokus heute</h3>
+<p>Neuronale Netze und Grundlagen des Machine Learnings.</p>
+</div>
 
-      <div class="card">
-        <h3>🎯 Lernziel</h3>
-        <p>
-          Verstehen, wie KI-Systeme lernen, Entscheidungen treffen und reale Probleme lösen.
-        </p>
-      </div>
+<div class="card">
+<h3>🎯 Lernziel</h3>
+<p>Schrittweiser Aufbau eines vollständigen KI-Wissenssystems.</p>
+</div>
 
-    </div>
+</div>
 
-    <section id="grundlagen">
-      <h2 class="section-title">Grundlagen der KI</h2>
+<section id="grundlagen">
+<h2 class="section-title">KI Grundlagen</h2>
 
-      <div class="topic-grid">
+<div class="topic-grid">
 
-        <div class="topic-card">
-          <h4>Was ist KI?</h4>
-          <ul>
-            <li>Simulation menschlicher Intelligenz</li>
-            <li>Lernen aus Daten</li>
-            <li>Problemlösung & Entscheidungsfindung</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Was ist KI?</h4>
+<ul>
+<li>Simulation intelligenter Prozesse</li>
+<li>Lernen aus Daten</li>
+<li>Problemlösung</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Schwache vs. starke KI</h4>
-          <ul>
-            <li>Schwache KI = spezialisiert</li>
-            <li>Starke KI = menschenähnliches Denken</li>
-            <li>AGI als Zukunftskonzept</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Arten der KI</h4>
+<ul>
+<li>Schwache KI</li>
+<li>Starke KI</li>
+<li>Generative KI</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Anwendungsbereiche</h4>
-          <ul>
-            <li>Sprachmodelle</li>
-            <li>Bilderkennung</li>
-            <li>Robotik</li>
-            <li>Medizin</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Anwendungen</h4>
+<ul>
+<li>Chatbots</li>
+<li>Bildanalyse</li>
+<li>Robotik</li>
+<li>Medizin</li>
+</ul>
+</div>
 
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="ml">
-      <h2 class="section-title">Machine Learning</h2>
+<section id="ml">
+<h2 class="section-title">Machine Learning</h2>
 
-      <div class="topic-grid">
+<div class="topic-grid">
 
-        <div class="topic-card">
-          <h4>Überwachtes Lernen</h4>
-          <ul>
-            <li>Training mit gelabelten Daten</li>
-            <li>Klassifikation</li>
-            <li>Regression</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Überwachtes Lernen</h4>
+<ul>
+<li>Gelabelte Daten</li>
+<li>Klassifikation</li>
+<li>Regression</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Unüberwachtes Lernen</h4>
-          <ul>
-            <li>Mustererkennung</li>
-            <li>Clusterbildung</li>
-            <li>Dimensionsreduktion</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Unüberwachtes Lernen</h4>
+<ul>
+<li>Clusterbildung</li>
+<li>Mustererkennung</li>
+<li>Datenanalyse</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Reinforcement Learning</h4>
-          <ul>
-            <li>Belohnungsprinzip</li>
-            <li>Agent & Umgebung</li>
-            <li>Optimierung durch Erfahrung</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Reinforcement Learning</h4>
+<ul>
+<li>Belohnungssysteme</li>
+<li>Agenten</li>
+<li>Optimierung</li>
+</ul>
+</div>
 
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="deep">
-      <h2 class="section-title">Neuronale Netze & Deep Learning</h2>
+<section id="deep">
+<h2 class="section-title">Deep Learning</h2>
 
-      <div class="topic-grid">
+<div class="topic-grid">
 
-        <div class="topic-card">
-          <h4>Künstliche Neuronen</h4>
-          <ul>
-            <li>Eingabeschicht</li>
-            <li>Gewichte & Aktivierung</li>
-            <li>Ausgabeschicht</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Neuronale Netze</h4>
+<ul>
+<li>Eingabeschichten</li>
+<li>Hidden Layers</li>
+<li>Ausgabeschicht</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Deep Learning</h4>
-          <ul>
-            <li>Mehrschichtige Netzwerke</li>
-            <li>Feature Learning</li>
-            <li>Automatische Mustererkennung</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Transformer</h4>
+<ul>
+<li>Attention Mechanismus</li>
+<li>Moderne Sprachmodelle</li>
+<li>ChatGPT Grundlagen</li>
+</ul>
+</div>
 
-        <div class="topic-card">
-          <h4>Transformer</h4>
-          <ul>
-            <li>Attention Mechanismus</li>
-            <li>Grundlage moderner KI</li>
-            <li>Verwendung in ChatGPT</li>
-          </ul>
-        </div>
+<div class="topic-card">
+<h4>Training</h4>
+<ul>
+<li>Backpropagation</li>
+<li>Loss Functions</li>
+<li>Gradient Descent</li>
+</ul>
+</div>
 
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="algorithmen">
-      <h2 class="section-title">KI-Algorithmen</h2>
+<section id="flashcards">
+<h2 class="section-title">Lernkarten</h2>
 
-      <div class="topic-grid">
+<div class="flashcards">
 
-        <div class="topic-card">
-          <h4>Suchalgorithmen</h4>
-          <ul>
-            <li>BFS</li>
-            <li>DFS</li>
-            <li>A*-Algorithmus</li>
-          </ul>
-        </div>
+<div class="flashcard">
+<div class="flashcard-inner">
+<div class="flashcard-front">Was bedeutet Machine Learning?</div>
+<div class="flashcard-back">
+Machine Learning beschreibt Verfahren, bei denen Systeme aus Daten lernen.
+</div>
+</div>
+</div>
 
-        <div class="topic-card">
-          <h4>Entscheidungsbäume</h4>
-          <ul>
-            <li>Klassifikation</li>
-            <li>Regelbasierte Entscheidungen</li>
-            <li>Interpretierbarkeit</li>
-          </ul>
-        </div>
+<div class="flashcard">
+<div class="flashcard-inner">
+<div class="flashcard-front">Was ist ein neuronales Netz?</div>
+<div class="flashcard-back">
+Ein neuronales Netz besteht aus künstlichen Neuronen zur Informationsverarbeitung.
+</div>
+</div>
+</div>
 
-        <div class="topic-card">
-          <h4>Clustering</h4>
-          <ul>
-            <li>K-Means</li>
-            <li>Gruppierung ähnlicher Daten</li>
-            <li>Musteranalyse</li>
-          </ul>
-        </div>
+<div class="flashcard">
+<div class="flashcard-inner">
+<div class="flashcard-front">Wofür werden Transformer genutzt?</div>
+<div class="flashcard-back">
+Transformer analysieren Beziehungen zwischen Wörtern mithilfe von Attention.
+</div>
+</div>
+</div>
 
-      </div>
-    </section>
+</div>
+</section>
 
-    <section id="flashcards">
-      <h2 class="section-title">Interaktive Lernkarten</h2>
+<section id="quiz">
+<h2 class="section-title">Dynamisches Quiz</h2>
 
-      <div class="flashcards">
+<div class="quiz-box">
+<div class="quiz-question" id="question"></div>
+<div class="quiz-options" id="options"></div>
+<div id="feedback"></div>
+</div>
+</section>
 
-        <div class="flashcard">
-          <div class="flashcard-inner">
-            <div class="flashcard-front">
-              Was ist Machine Learning?
-            </div>
-            <div class="flashcard-back">
-              Machine Learning beschreibt Verfahren, bei denen Systeme aus Daten lernen.
-            </div>
-          </div>
-        </div>
+<section id="upload">
+<h2 class="section-title">Vorlesungsstoff hochladen</h2>
 
-        <div class="flashcard">
-          <div class="flashcard-inner">
-            <div class="flashcard-front">
-              Was bedeutet Deep Learning?
-            </div>
-            <div class="flashcard-back">
-              Deep Learning nutzt tiefe neuronale Netze mit vielen Schichten.
-            </div>
-          </div>
-        </div>
+<div class="upload-box">
+<h3>📚 Dateien hinzufügen</h3>
+<p>
+Lade PDFs, Screenshots oder Vorlesungsunterlagen hoch.
+Die Plattform kann später automatisch Lernkarten,
+Zusammenfassungen und Quizfragen daraus generieren.
+</p>
 
-        <div class="flashcard">
-          <div class="flashcard-inner">
-            <div class="flashcard-front">
-              Wofür steht KI?
-            </div>
-            <div class="flashcard-back">
-              KI steht für Künstliche Intelligenz.
-            </div>
-          </div>
-        </div>
+<input type="file" multiple>
+</div>
+</section>
 
-      </div>
-    </section>
+<section id="notes">
+<h2 class="section-title">Persönliche Notizen</h2>
 
-    <section id="quiz">
-      <h2 class="section-title">Quiz</h2>
+<textarea id="notesArea" placeholder="Schreibe hier deine Vorlesungsnotizen..."></textarea>
 
-      <div class="quiz-box">
+<button class="save-btn" onclick="saveNotes()">
+Notizen speichern
+</button>
+</section>
 
-        <h4>Welche Aussage beschreibt überwachtes Lernen?</h4>
+<footer>
+<p>Nele AI Learn • Moderne KI Lernplattform</p>
+</footer>
 
-        <div class="quiz-options">
-          <button onclick="checkAnswer(true)">
-            Das Modell lernt mit gelabelten Daten
-          </button>
+</main>
 
-          <button onclick="checkAnswer(false)">
-            Das Modell arbeitet komplett zufällig
-          </button>
+<script>
 
-          <button onclick="checkAnswer(false)">
-            Es werden keine Trainingsdaten verwendet
-          </button>
-        </div>
+const flashcards = document.querySelectorAll('.flashcard');
 
-        <p id="quiz-result"></p>
-
-      </div>
-    </section>
-
-    <section id="notizen">
-      <h2 class="section-title">Persönliche Notizen</h2>
-
-      <textarea id="notes" placeholder="Schreibe hier deine Vorlesungsnotizen..."></textarea>
-
-      <button class="save-btn" onclick="saveNotes()">
-        Notizen speichern
-      </button>
-    </section>
-
-    <footer>
-      <p>Designed for Nele AI Learn • KI Methoden & Anwendungen</p>
-    </footer>
-
-  </main>
-
-  <script>
-
-    const flashcards = document.querySelectorAll('.flashcard');
-
-    flashcards.forEach(card => {
-      card.addEventListener('click', () => {
+flashcards.forEach(card => {
+    card.addEventListener('click', () => {
         card.classList.toggle('flipped');
-      });
     });
+});
 
-    function checkAnswer(correct) {
-      const result = document.getElementById('quiz-result');
+const quizData = [
 
-      if(correct) {
-        result.textContent = 'Richtig! 🎉';
-        result.style.color = '#d78c9d';
-      }
-      else {
-        result.textContent = 'Nicht ganz richtig.';
-        result.style.color = '#999';
-      }
-    }
+{
+question: 'Was beschreibt überwachtes Lernen?',
+options: [
+'Training mit gelabelten Daten',
+'Lernen ohne Daten',
+'Zufällige Entscheidungen'
+],
+answer: 0,
+explanation: 'Beim überwachten Lernen werden Trainingsdaten mit bekannten Ergebnissen genutzt.'
+},
 
-    function saveNotes() {
-      const notes = document.getElementById('notes').value;
-      localStorage.setItem('neleNotes', notes);
-      alert('Notizen gespeichert ✨');
-    }
+{
+question: 'Was ist ein neuronales Netz?',
+options: [
+'Ein biologisches Organ',
+'Ein Modell aus künstlichen Neuronen',
+'Eine Datenbank'
+],
+answer: 1,
+explanation: 'Neuronale Netze bestehen aus künstlichen Neuronen und werden für Mustererkennung genutzt.'
+},
 
-    window.onload = () => {
-      const saved = localStorage.getItem('neleNotes');
+{
+question: 'Wofür wird Deep Learning verwendet?',
+options: [
+'Bild- und Spracherkennung',
+'Ausschließlich Tabellen',
+'Nur Datenbanken'
+],
+answer: 0,
+explanation: 'Deep Learning eignet sich besonders für komplexe Mustererkennung.'
+}
 
-      if(saved) {
-        document.getElementById('notes').value = saved;
-      }
-    }
+];
 
-  </script>
+let currentQuestion = 0;
+
+function loadQuestion() {
+
+const question = document.getElementById('question');
+const options = document.getElementById('options');
+const feedback = document.getElementById('feedback');
+
+feedback.innerHTML = '';
+
+const q = quizData[currentQuestion];
+
+question.textContent = q.question;
+options.innerHTML = '';
+
+q.options.forEach((option, index) => {
+
+const button = document.createElement('button');
+button.textContent = option;
+button.onclick = () => checkAnswer(index);
+
+options.appendChild(button);
+
+});
+}
+
+function checkAnswer(selected) {
+
+const feedback = document.getElementById('feedback');
+const q = quizData[currentQuestion];
+
+if(selected === q.answer) {
+
+feedback.innerHTML = '<strong>Richtig 🎉</strong><br><br>Nächste Frage wird geladen...';
+
+setTimeout(() => {
+
+currentQuestion++;
+
+if(currentQuestion >= quizData.length) {
+currentQuestion = 0;
+}
+
+loadQuestion();
+
+}, 1500);
+
+}
+
+else {
+
+feedback.innerHTML = `
+<strong>Falsch ❌</strong><br><br>
+${q.explanation}
+`;
+}
+}
+
+loadQuestion();
+
+function saveNotes() {
+
+const notes = document.getElementById('notesArea').value;
+localStorage.setItem('neleNotes', notes);
+
+alert('Notizen gespeichert ✨');
+}
+
+window.onload = () => {
+
+const saved = localStorage.getItem('neleNotes');
+
+if(saved) {
+
+document.getElementById('notesArea').value = saved;
+
+}
+}
+
+</script>
 
 </body>
 </html>
 ```
-
-## Empfohlene nächste Erweiterungen
-
-### Phase 2
-
-* Suchfunktion
-* Kapitel-Fortschritt
-* Multiple Quizseiten
-* Lernstatistiken
-* Hamburger-Menü für Mobile
-* Floating Bottom Navigation
-
-### Phase 3
-
-* KI-Glossar
-* Mindmaps
-* Diagramme
-* PDF-Zusammenfassungen
-* Lernmodus
-* Klausurmodus
-
-### Phase 4
-
-* GitHub Pages Deployment
-* Eigene Domain
-* Markdown-Unterstützung
-* Offline-Modus
-* KI-Zusammenfassungen
